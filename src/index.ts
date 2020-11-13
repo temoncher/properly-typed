@@ -1,5 +1,5 @@
-import { Leaves } from "./leaves.type";
-import { OutputType } from "./output-type.type";
+import { Leaves } from "./types/leaves.type";
+import { OutputType } from "./types/output-type.type";
 
 export const get = <T extends object, P extends Leaves<T>>(obj: T, path: P): OutputType<T, P> => {
   const segments = path.split('/');

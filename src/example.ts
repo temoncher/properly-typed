@@ -1,5 +1,5 @@
-import { Leaves } from './leaves.type';
-import { OutputType } from './output-type.type';
+import { Leaves } from './types/leaves.type';
+import { OutputType } from './types/output-type.type';
 import { get } from './index';
 
 const something = {
