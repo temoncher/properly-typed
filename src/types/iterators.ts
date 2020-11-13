@@ -1,4 +1,4 @@
-export type Prev = [
+type Prev = [
   -1,
   0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
   10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
@@ -13,7 +13,7 @@ export type Prev = [
   100, ...never[]
 ];
 
-export type Next = [
+type Next = [
   1, 2, 3, 4, 5, 6, 7, 8, 9,
   10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
   20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
@@ -27,15 +27,37 @@ export type Next = [
   100, ...never[]
 ];
 
+type MaxIterations = [
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+  10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+  20, 21, 22, 23, ...never[]
+]
+
+type Calculatable<N extends number> = MaxIterations[N] extends undefined ? false : true
+
+export type Manageble<N extends number> = Prev[N] extends undefined ? false : true
+
 export type Plus<
   N extends number,
   A extends number,
   ITERATION extends number = 0,
-> = Prev[N] extends never
+> = Calculatable<N> extends false
   ? number
-  : ITERATION extends A
-    ? N
-    : Plus<Next[N], A, Next[ITERATION]>
+  : Calculatable<A> extends false
+    ? number
+    : ITERATION extends A
+      ? N
+      : Plus<Next[N], A, Next[ITERATION]>
 
+export type Minus<
+  N extends number,
+  A extends number,
+  ITERATION extends number = 0,
+> = Calculatable<N> extends false
+  ? number
+  : Calculatable<A> extends false
+    ? number
+    : ITERATION extends A
+      ? N
+      : Minus<Prev[N], A, Next[ITERATION]>
 
-type ss = Plus<2, 23>;

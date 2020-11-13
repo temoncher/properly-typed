@@ -1,7 +1,7 @@
-import { Prev } from "./prev.type";
+import { Minus, Manageble } from "./iterators";
 
-export type Repeat<BASE extends string, COUNT extends number> = Prev[COUNT] extends never
+export type Repeat<BASE extends string, COUNT extends number> = Manageble<COUNT> extends false
   ? string
   : COUNT extends 0
     ? ''
-    : `${BASE}${Repeat<BASE, Prev[COUNT]>}`;
+    : `${BASE}${Repeat<BASE, Minus<COUNT, 1>>}`;
