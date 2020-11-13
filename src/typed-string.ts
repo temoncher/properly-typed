@@ -1,8 +1,7 @@
-import { CharAt } from './types/char-at.type';
 import { Concat } from './types/concat.type';
 import { Repeat } from './types/repeat.type';
 import { Slice } from './types/slice.type';
-import { StringLength } from './types/string-utils';
+import { CharAt, StringLength } from './types/string-utils';
 
 export class TypedString<STR extends string> {
   constructor(private readonly value: STR) {}
@@ -30,7 +29,8 @@ export class TypedString<STR extends string> {
   }
 }
 
-const tString = new TypedString('lol, ');
+const str = 'lol, ';
+const tString = new TypedString(str as string);
 
 const chAt = tString.charAt(2);
 const con = tString.concat('lets do some', ' !!! ', 'che cks');

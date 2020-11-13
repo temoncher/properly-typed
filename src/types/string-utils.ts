@@ -18,7 +18,9 @@ export type CharAt<
     ? POS extends 0
       ? FIRST_CHARACTER
       : CharAt<REST, Minus<POS, 1>>
-    : ''
+    : BASE extends ''
+      ? ''
+      : string
 
 export type StringHead<
   BASE extends string,
