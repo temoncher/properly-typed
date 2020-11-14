@@ -1,4 +1,4 @@
-import { Concat } from '../types/concat.type';
+import { Concat, typedConcat } from './typed-concat';
 import { RepeatedString, typedRepeat } from './typed-repeat';
 import { SlicedString, typedSlice } from './typed-slice';
 import { SplittedString, typedSplit } from './typed-split';
@@ -16,9 +16,18 @@ export class TypedString<STR extends string> {
     return this.value.charAt(pos);
   }
 
+  /**
+   * Typed version of `String.prototype.concat`
+   * Returns a string that contains the concatenation of two or more strings.
+   * @param strings The strings to append to the end of the string.
+   * @example
+   * const typedString = new TypedString('first');
+   * // type is exact 'first secondthird', not general string
+   * const concatenated: 'first secondthird' = typedString.concat(' ', 'second', 'third');
+   */
   concat<ARR extends string[]>(...strings: ARR): Concat<STR, ARR>
   concat(...strings: string[]): string {
-    return this.value.concat(...strings);
+    return typedConcat(this.value, ...strings);
   }
 
   /**
