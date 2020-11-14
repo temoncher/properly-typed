@@ -28,7 +28,7 @@ export interface TypedSplit {
 }
 
 /**
- * Typed version of `String.prototype.split()`
+ * Typed version of `String.prototype.split`
  * Split a string into substrings using the specified separator and return them as an array.
  * @param str A string to split.
  * @param separator An object that can split a string.

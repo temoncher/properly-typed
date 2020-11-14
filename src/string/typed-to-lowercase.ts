@@ -4,7 +4,7 @@ export interface TypedToLowercase {
 }
 
 /**
- * Typed version of `String.prototype.toLowerCase()`
+ * Typed version of `String.prototype.toLowerCase`
  * Converts all the alphabetic characters in a string to lowercase.
  * @param str A string to transform
  * @example

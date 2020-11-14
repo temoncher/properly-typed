@@ -4,7 +4,7 @@ export interface TypedToUppercase {
 }
 
 /**
- * Typed version of `String.prototype.toUpperCase()`
+ * Typed version of `String.prototype.toUpperCase`
  * Converts all the alphabetic characters in a string to uppercase.
  * @param str A string to transform
  * @example

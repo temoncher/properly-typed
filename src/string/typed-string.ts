@@ -1,6 +1,6 @@
 import { Concat } from '../types/concat.type';
 import { Repeat } from '../types/repeat.type';
-import { Slice } from '../types/slice.type';
+import { SlicedString, typedSlice } from './typed-slice';
 import { SplittedString, typedSplit } from './typed-split';
 import { CharAt, StringLength } from './string-utils';
 import { Substr, typedSubstr } from './typed-substr';
@@ -26,16 +26,29 @@ export class TypedString<STR extends string> {
     return this.value.repeat(count);
   }
 
+  /**
+   * Typed version of `String.prototype.slice`
+   * Returns a section of a string.
+   * @param start The index to the beginning of the specified portion of stringObj.
+   * @param end The index to the end of the specified portion of stringObj. The substring includes the characters up to, but not including, the character indicated by end.
+   * If this value is not specified, the substring continues to the end of stringObj.
+   * @example
+   * const typedString = new TypedString('some string');
+   * // type is exact 'e string', not general string
+   * const slice1: 'e string' = typedString.slice(3);
+   * // type is exact ' st', not general string
+   * const slice2: ' st' = typedString.slice(4, 7);
+   */
   slice<START extends number = 0, END extends number = StringLength<STR>>(
     startIndex?: START,
     endIndex?: END,
-  ): Slice<STR, START, END>
+  ): SlicedString<STR, START, END>
   slice(startIndex?: number, endIndex?: number): string {
-    return this.value.slice(startIndex, endIndex);
+    return typedSlice(this.value, startIndex, endIndex);
   }
 
   /**
-   * Typed version of `String.prototype.split()`
+   * Typed version of `String.prototype.split`
    * Split a string into substrings using the specified separator and return them as an array.
    * @param separator An object that can split a string.
    * @param limit A value used to limit the number of elements returned in the array.
@@ -55,7 +68,7 @@ export class TypedString<STR extends string> {
   }
 
   /**
-   * Typed version of `String.prototype.substr()`
+   * Typed version of `String.prototype.substr`
    * Gets a substring beginning at the specified location and having the specified length.
    * @param from The starting position of the desired substring. The index of the first character in the string is zero.
    * @param length The number of characters to include in the returned substring.
@@ -75,7 +88,7 @@ export class TypedString<STR extends string> {
   }
 
   /**
-   * Typed version of `String.prototype.toLowerCase()`
+   * Typed version of `String.prototype.toLowerCase`
    * Converts all the alphabetic characters in a string to lowercase.
    * @example
    * const typedString = new TypedString('SoMe StRinG');
@@ -88,7 +101,7 @@ export class TypedString<STR extends string> {
   }
 
   /**
-   * Typed version of `String.prototype.toUpperCase()`
+   * Typed version of `String.prototype.toUpperCase`
    * Converts all the alphabetic characters in a string to uppercase.
    * @example
    * const typedString = new TypedString('Some string');
