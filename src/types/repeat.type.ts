@@ -1,7 +1,9 @@
-import { Minus, Manageble } from "./iterators";
+import { MinusOne, Minusable } from './iterators';
 
-export type Repeat<BASE extends string, COUNT extends number> = Manageble<COUNT> extends false
-  ? string
-  : COUNT extends 0
-    ? ''
-    : `${BASE}${Repeat<BASE, Minus<COUNT, 1>>}`;
+export type Repeat<BASE extends string, COUNT extends number> = BASE extends `${infer _}`
+  ? Minusable<COUNT> extends false
+    ? string
+    : COUNT extends 0
+      ? ''
+      : `${BASE}${Repeat<BASE, MinusOne<COUNT>>}`
+  : string;

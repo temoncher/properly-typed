@@ -1,4 +1,4 @@
-import { StringToChars } from "./string-utils";
+import { StringToChars } from './string-utils';
 
 export type Split<BASE extends string, SEP extends string | undefined> = BASE extends `${infer _}`
   ? SEP extends undefined

@@ -33,9 +33,9 @@ type MaxIterations = [
   20, 21, 22, 23, ...never[]
 ]
 
-type Calculatable<N extends number> = MaxIterations[N] extends undefined ? false : true
+export type Calculatable<N extends number> = MaxIterations[N] extends undefined ? false : true
 
-export type Manageble<N extends number> = Prev[N] extends undefined ? false : true
+export type Plusable<N extends number> = Next[N] extends undefined ? false : true
 
 export type Plus<
   N extends number,
@@ -49,6 +49,12 @@ export type Plus<
       ? N
       : Plus<Next[N], A, Next[ITERATION]>
 
+export type PlusOne<N extends number> = Next[N] extends number
+  ? Next[N]
+  : number
+
+export type Minusable<N extends number> = Prev[N] extends undefined ? false : true
+
 export type Minus<
   N extends number,
   A extends number,
@@ -60,4 +66,8 @@ export type Minus<
     : ITERATION extends A
       ? N
       : Minus<Prev[N], A, Next[ITERATION]>
+
+export type MinusOne<N extends number> = Prev[N] extends number
+  ? Prev[N]
+  : number
 
