@@ -47,3 +47,11 @@ export type StringTail<
         ? REST
         : StringTail<REST, Minus<FROM, 1>, ITERATION>
       : ''
+
+export type StringToChars<BASE extends string> = BASE extends `${infer _}`
+  ? BASE extends `${infer FIRST_CHAR}${infer REST}`
+    ? [FIRST_CHAR, ...StringToChars<REST>]
+    : []
+  : string[]
+
+type sm = StringToChars<'lol keke, qgt'>

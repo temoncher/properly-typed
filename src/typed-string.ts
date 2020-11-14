@@ -41,4 +41,4 @@ const chAt = tString.charAt(2);
 const con = tString.concat('lets do some', ' !!! ', 'che cks');
 const rep = tString.repeat(3);
 const slice = tString.slice();
-const split = tString.split();
+const split = tString.split('l');
