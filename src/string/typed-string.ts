@@ -1,5 +1,5 @@
 import { Concat } from '../types/concat.type';
-import { Repeat } from '../types/repeat.type';
+import { RepeatedString, typedRepeat } from './typed-repeat';
 import { SlicedString, typedSlice } from './typed-slice';
 import { SplittedString, typedSplit } from './typed-split';
 import { CharAt, StringLength } from './string-utils';
@@ -21,9 +21,21 @@ export class TypedString<STR extends string> {
     return this.value.concat(...strings);
   }
 
-  repeat<COUNT extends number>(count: COUNT): Repeat<STR, COUNT>
+  /**
+   * Typed version of `String.prototype.repeat`
+   * Returns a String value that is made from count copies appended together. If count is 0,
+   * the empty string is returned.
+   * @param count number of copies to append
+   * @example
+   * const typedString = new TypedString('bobby ');
+   * // type is exact 'bobby bobby bobby ', not general string
+   * const repeated1: 'bobby bobby bobby ' = typedString.repeat(3);
+   * // type is exact '', not general string
+   * const repeated2: '' = typedString.repeat(0);
+   */
+  repeat<COUNT extends number>(count: COUNT): RepeatedString<STR, COUNT>
   repeat(count: number): string {
-    return this.value.repeat(count);
+    return typedRepeat(this.value, count);
   }
 
   /**
