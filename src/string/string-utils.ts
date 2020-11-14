@@ -1,4 +1,4 @@
-import { PlusOne, Plusable, MinusOne, Minusable } from './arithmetics';
+import { PlusOne, Plusable, MinusOne, Minusable } from '../types/arithmetics';
 
 export type StringLength<
   BASE extends string,

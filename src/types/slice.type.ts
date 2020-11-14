@@ -1,5 +1,5 @@
 import { Calculatable, Minus } from './arithmetics';
-import { StringHead, StringLength, StringTail } from './string-utils';
+import { StringHead, StringLength, StringTail } from '../string/string-utils';
 
 export type Slice<
   BASE extends string,

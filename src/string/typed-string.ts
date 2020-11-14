@@ -2,11 +2,11 @@ import { Concat } from '../types/concat.type';
 import { Repeat } from '../types/repeat.type';
 import { Slice } from '../types/slice.type';
 import { Split } from '../types/split.type';
-import { CharAt, StringLength } from '../types/string-utils';
-import { Substr } from '../types/substr.type';
+import { CharAt, StringLength } from './string-utils';
+import { Substr, typedSubstr } from './typed-substr';
 import { typedToLowercase } from './typed-to-lowercase';
 import { typedToUppercase } from './typed-to-uppercase';
-import { typedTrim } from './typed-trim';
+import { TrimmedString, typedTrim } from './typed-trim';
 
 export class TypedString<STR extends string> {
   constructor(private readonly value: STR) {}
@@ -44,12 +44,21 @@ export class TypedString<STR extends string> {
     return this.value.split(separator, limit);
   }
 
+  /**
+   * Typed version of `String.prototype.substr()`
+   * @example
+   * const typedString = new TypedString('0123456789');
+   * // type is exact '456', not general string
+   * const substr1: '456' = typedString.substr(4);
+   * // type is exact '234', not general string
+   * const substr2: '234' = typedString.substr(2, 3);
+   */
   substr<FROM extends number, LEN extends number | undefined = undefined>(
     from: FROM,
     length?: LEN,
   ): Substr<STR, FROM, LEN>
   substr(from: number, length?: number): string {
-    return this.value.substr(from, length);
+    return typedSubstr(this.value, from, length);
   }
 
   /**
@@ -59,7 +68,8 @@ export class TypedString<STR extends string> {
    * // type is exact 'some string', not general string
    * const lowercased: 'some string' = typedString.toLowerCase();
    */
-  toLowerCase() {
+  toLowerCase(): Lowercase<STR>;
+  toLowerCase(): string {
     return typedToLowercase(this.value);
   }
 
@@ -70,7 +80,8 @@ export class TypedString<STR extends string> {
    * // type is exact 'SOME STRING', not general string
    * const uppercased: 'SOME STRING' = typedString.toUpperCase();
    */
-  toUpperCase() {
+  toUpperCase(): Uppercase<STR>;
+  toUpperCase(): string {
     return typedToUppercase(this.value);
   }
 
@@ -81,7 +92,8 @@ export class TypedString<STR extends string> {
    * // type is exact 'some not trimmed  string', not general string
    * const trimmed: 'some not trimmed  string' = typedString.trim();
    */
-  trim() {
+  trim(): TrimmedString<STR>;
+  trim(): string {
     return typedTrim(this.value);
   }
 }
