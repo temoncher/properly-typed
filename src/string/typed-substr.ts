@@ -34,7 +34,10 @@ export interface TypedSubstr {
 
 /**
  * Typed version of `String.prototype.substr()`
+ * Gets a substring beginning at the specified location and having the specified length.
  * @param str string to slice from
+ * @param from The starting position of the desired substring. The index of the first character in the string is zero.
+ * @param length The number of characters to include in the returned substring.
  * @example
  * // type is exact '456', not general string
  * const substr1: '456' = typedSubstr('0123456789', 4);
