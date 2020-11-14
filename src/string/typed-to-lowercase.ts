@@ -5,7 +5,8 @@ export interface TypedToLowercase {
 
 /**
  * Typed version of `String.prototype.toLowerCase()`
- * @param str string to transform
+ * Converts all the alphabetic characters in a string to lowercase.
+ * @param str A string to transform
  * @example
  * // type is exact 'some string', not general string
  * const lowercased: 'some string' = typedToLowercase('SoMe StRinG');

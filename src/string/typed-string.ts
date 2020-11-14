@@ -76,6 +76,7 @@ export class TypedString<STR extends string> {
 
   /**
    * Typed version of `String.prototype.toLowerCase()`
+   * Converts all the alphabetic characters in a string to lowercase.
    * @example
    * const typedString = new TypedString('SoMe StRinG');
    * // type is exact 'some string', not general string
@@ -88,6 +89,7 @@ export class TypedString<STR extends string> {
 
   /**
    * Typed version of `String.prototype.toUpperCase()`
+   * Converts all the alphabetic characters in a string to uppercase.
    * @example
    * const typedString = new TypedString('Some string');
    * // type is exact 'SOME STRING', not general string
@@ -100,6 +102,7 @@ export class TypedString<STR extends string> {
 
   /**
    * Typed version of `String.prototype.trim`
+   * Removes the leading and trailing white space and line terminator characters from a string.
    * @example
    * const typedString = new TypedString('  some not trimmed  string  ');
    * // type is exact 'some not trimmed  string', not general string

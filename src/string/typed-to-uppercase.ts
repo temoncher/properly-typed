@@ -5,7 +5,8 @@ export interface TypedToUppercase {
 
 /**
  * Typed version of `String.prototype.toUpperCase()`
- * @param str string to transform
+ * Converts all the alphabetic characters in a string to uppercase.
+ * @param str A string to transform
  * @example
  * // type is exact 'SOME STRING', not general string
  * const uppercased: 'SOME STRING' = typedToUppercase('Some string');

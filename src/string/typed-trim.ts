@@ -13,7 +13,8 @@ export interface TypedTrim {
 
 /**
  * Typed version of `String.prototype.trim`
- * @param str string to trim
+ * Removes the leading and trailing white space and line terminator characters from a string.
+ * @param str A string to trim
  * @example
  * // type is exact 'some not trimmed  string', not general string
  * const trimmed: 'some not trimmed  string' = typedTrim('  some not trimmed  string  ');
