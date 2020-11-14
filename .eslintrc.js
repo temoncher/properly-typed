@@ -1,15 +1,11 @@
 module.exports = {
-  env: {
-    node: true,
-  },
   extends: [
+    'eslint:recommended',
     'airbnb-base',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:import/warnings',
   ],
   parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaVersion: 11,
-    sourceType: 'module',
-  },
   plugins: [
     '@typescript-eslint',
   ],
@@ -22,6 +18,7 @@ module.exports = {
     'import/no-unresolved': 0, // conflicts with typescript aliases
     'import/prefer-default-export': 0,
     'no-unused-vars': 0,
+    'no-useless-constructor': 0,
     '@typescript-eslint/explicit-module-boundary-types': 0,
     'react/prop-types': 0,
     semi: 'warn',
