@@ -2,18 +2,30 @@ import { Concat, typedConcat } from './typed-concat';
 import { RepeatedString, typedRepeat } from './typed-repeat';
 import { SlicedString, typedSlice } from './typed-slice';
 import { SplittedString, typedSplit } from './typed-split';
-import { CharAt, StringLength } from './string-utils';
+import { StringLength } from './string-utils';
 import { Substr, typedSubstr } from './typed-substr';
 import { typedToLowercase } from './typed-to-lowercase';
 import { typedToUppercase } from './typed-to-uppercase';
 import { TrimmedString, typedTrim } from './typed-trim';
+import { CharAt, typedCharAt } from './typed-char-at';
 
 export class TypedString<STR extends string> {
   constructor(private readonly value: STR) {}
 
+  /**
+   * Typed version of `String.prototype.charAt`
+   * Returns the character at the specified index.
+   * @param pos The zero-based index of the desired character.
+   * @example
+   * const typedString = new TypedString('some string');
+   * // type is exact 'e', not general string
+   * const char1: 'e' = typedString.charAt(3);
+   * // type is exact '', not general string
+   * const char2: '' = typedString.charAt(15);
+   */
   charAt<POS extends number>(pos: POS): CharAt<STR, POS>
   charAt(pos: number): string {
-    return this.value.charAt(pos);
+    return typedCharAt(this.value, pos);
   }
 
   /**

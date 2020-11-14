@@ -1,4 +1,9 @@
-import { PlusOne, Plusable, MinusOne, Minusable } from '../types/arithmetics';
+import {
+  PlusOne,
+  Plusable,
+  MinusOne,
+  Minusable,
+} from '../types/arithmetics';
 
 export type StringLength<
   BASE extends string,
@@ -10,21 +15,6 @@ export type StringLength<
       ? StringLength<REST, PlusOne<ITERATION>>
       : ITERATION
   : number;
-
-export type CharAt<
-  BASE extends string,
-  POS extends number = 0,
-> = BASE extends `${infer _}`
-  ? Minusable<POS> extends false
-    ? string
-    : BASE extends `${infer FIRST_CHARACTER}${infer REST}`
-      ? POS extends 0
-        ? FIRST_CHARACTER
-        : CharAt<REST, MinusOne<POS>>
-      : BASE extends ''
-        ? ''
-        : string
-  : string;
 
 export type StringHead<
   BASE extends string,
