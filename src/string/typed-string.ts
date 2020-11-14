@@ -1,7 +1,7 @@
 import { Concat } from '../types/concat.type';
 import { Repeat } from '../types/repeat.type';
 import { Slice } from '../types/slice.type';
-import { Split } from '../types/split.type';
+import { SplittedString, typedSplit } from './split.type';
 import { CharAt, StringLength } from './string-utils';
 import { Substr, typedSubstr } from './typed-substr';
 import { typedToLowercase } from './typed-to-lowercase';
@@ -36,12 +36,12 @@ export class TypedString<STR extends string> {
 
   split<SEP extends string | undefined = undefined>(
     separator?: SEP, // TODO: add support for regex and limit
-  ): Split<STR, SEP>
+  ): SplittedString<STR, SEP>
   split(
     separator: { [Symbol.split](string: string, limit?: number): string[] },
     limit?: number,
   ): string[] {
-    return this.value.split(separator, limit);
+    return typedSplit(this.value, separator, limit);
   }
 
   /**
