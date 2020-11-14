@@ -1,4 +1,4 @@
-import { MinusOne, Minusable } from './iterators';
+import { MinusOne, Minusable } from './arithmetics';
 
 export type Repeat<BASE extends string, COUNT extends number> = BASE extends `${infer _}`
   ? Minusable<COUNT> extends false

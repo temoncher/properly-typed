@@ -69,5 +69,4 @@ export type Minus<
 
 export type MinusOne<N extends number> = Prev[N] extends number
   ? Prev[N]
-  : number
-
+  : number;

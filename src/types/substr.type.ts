@@ -9,10 +9,12 @@ export type Substr<
   ? FROM extends 0
     ? LEN extends undefined
       ? BASE
-      : StringLength<RES> extends LEN
+      : BASE extends ''
         ? RES
-        : BASE extends `${infer FIRST_CHAR}${infer REST}`
-          ? Substr<StringTail<REST, FROM>, 0, LEN, `${RES}${FIRST_CHAR}`>
-          : RES
+        : StringLength<RES> extends LEN
+          ? RES
+          : BASE extends `${infer FIRST_CHAR}${infer REST}`
+            ? Substr<StringTail<REST, 0>, 0, LEN, `${RES}${FIRST_CHAR}`>
+            : RES
     : Substr<StringTail<BASE, FROM>, 0, LEN, RES>
   : string;

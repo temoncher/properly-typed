@@ -1,4 +1,4 @@
-import { PlusOne, Plusable, MinusOne, Minusable } from './iterators';
+import { PlusOne, Plusable, MinusOne, Minusable } from './arithmetics';
 
 export type StringLength<
   BASE extends string,

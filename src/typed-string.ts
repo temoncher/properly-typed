@@ -1,9 +1,9 @@
 import { Concat } from './types/concat.type';
-import { Plus } from './types/iterators';
 import { Repeat } from './types/repeat.type';
 import { Slice } from './types/slice.type';
 import { Split } from './types/split.type';
 import { CharAt, StringLength } from './types/string-utils';
+import { Substr } from './types/substr.type';
 
 export class TypedString<STR extends string> {
   constructor(private readonly value: STR) {}
@@ -41,21 +41,33 @@ export class TypedString<STR extends string> {
     return this.value.split(separator, limit);
   }
 
-  substr<FROM extends number, LEN extends number | undefined>(
+  substr<FROM extends number, LEN extends number | undefined = undefined>(
     from: FROM,
     length?: LEN,
-  ): Slice<STR, FROM, Plus<FROM, LEN>>
+  ): Substr<STR, FROM, LEN>
   substr(from: number, length?: number): string {
     return this.value.substr(from, length);
   }
+
+  toLowerCase(): Lowercase<STR>
+  toLowerCase(): string {
+    return this.value.toLowerCase();
+  }
+
+  toUpperCase(): Uppercase<STR>
+  toUpperCase(): string {
+    return this.value.toUpperCase();
+  }
 }
 
-const str = 'lol, ';
+const str = 'hey, 0123456, toWhAt?';
 const tString = new TypedString(str);
 
 const chAt = tString.charAt(3);
 const con = tString.concat('lets do some', ' !!! ', 'che cks');
-const rep = tString.repeat(100);
+const rep = tString.repeat(5);
 const slice = tString.slice();
 const split = tString.split('l');
-const substr = tString.substr(1);
+const substr = tString.substr(3, 56);
+const lower = tString.toLowerCase();
+const upper = tString.toUpperCase();

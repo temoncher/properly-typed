@@ -1,4 +1,4 @@
-import { Calculatable, Minus } from './iterators';
+import { Calculatable, Minus } from './arithmetics';
 import { StringHead, StringLength, StringTail } from './string-utils';
 
 export type Slice<
