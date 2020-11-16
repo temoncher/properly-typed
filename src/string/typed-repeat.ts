@@ -1,11 +1,14 @@
-import { MinusOne, Minusable } from '../types/arithmetics';
+import { MinusOne, ValidNumber } from '../types/arithmetics';
 
-export type RepeatedString<BASE extends string, COUNT extends number> = BASE extends `${infer _}`
-  ? Minusable<COUNT> extends false
-    ? string
-    : COUNT extends 0
-      ? ''
-      : `${BASE}${RepeatedString<BASE, MinusOne<COUNT>>}`
+export type RepeatedString<
+  BASE extends string,
+  COUNT extends number,
+> = BASE extends `${infer _}`
+  ? COUNT extends 0
+    ? BASE
+    : COUNT extends ValidNumber
+      ? `${BASE}${RepeatedString<BASE, MinusOne<COUNT>>}`
+      : string
   : string;
 
 export interface TypedRepeat {
@@ -17,6 +20,9 @@ export interface TypedRepeat {
  * Typed version of `String.prototype.repeat`
  * Returns a String value that is made from count copies appended together. If count is 0,
  * the empty string is returned.
+ *
+ * ! Can preserve type only when repeating less than 15 times
+ *
  * @param str A string to repeat
  * @param count number of copies to append
  * @example

@@ -1,18 +1,17 @@
-import { Minusable, MinusOne } from '@/types/arithmetics';
+import { ValidNumber } from '@/types/arithmetics';
+import { StringToChars } from './string-utils';
 
 export type CharAt<
   BASE extends string,
   POS extends number = 0,
 > = BASE extends `${infer _}`
-  ? Minusable<POS> extends false
-    ? string
-    : BASE extends `${infer FIRST_CHARACTER}${infer REST}`
-      ? POS extends 0
-        ? FIRST_CHARACTER
-        : CharAt<REST, MinusOne<POS>>
-      : BASE extends ''
-        ? ''
-        : string
+  ? POS extends ValidNumber
+    ? StringToChars<BASE>[POS] extends infer CHAR
+      ? CHAR extends undefined
+        ? string
+        : CHAR
+      : string
+    : string
   : string;
 
 export interface TypedCharAt {
@@ -23,6 +22,9 @@ export interface TypedCharAt {
 /**
  * Typed version of `String.prototype.charAt`
  * Returns the character at the specified index.
+ *
+ * ! Can parse a string around 80 charactes maximum.
+ *
  * @param str
  * @param pos The zero-based index of the desired character.
  * @example

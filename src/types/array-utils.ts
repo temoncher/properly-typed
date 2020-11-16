@@ -1,4 +1,13 @@
-export type ArrayTail<A extends any[]> = ((...args: A) => any) extends ((h: any, ...t: infer T) => any) ? T : never
-export type ArrayHead<T> = T extends [infer U, ...any[]] ? U : never;
-export type ArrayLength<T extends any[]> = T extends (infer _)[] & { length: infer L } ? L : never;
-export type ArrayLast<T extends any[]> = T[ArrayLength<ArrayTail<T>>];
+export type ArrayTail<
+  A extends unknown[]
+> = ((...args: A) => unknown) extends ((h: infer _, ...t: infer T) => unknown)
+  ? T
+  : never
+export type ArrayHead<T> = T extends [infer U, ...infer _]
+  ? U
+  : never;
+export type ArrayElementType<
+  T extends ReadonlyArray<unknown>
+> = T extends ReadonlyArray<infer ElementType>
+  ? ElementType
+  : never;

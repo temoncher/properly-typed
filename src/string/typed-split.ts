@@ -1,6 +1,9 @@
 import { StringToChars } from './string-utils';
 
-export type SplittedString<BASE extends string, SEP extends string | undefined> = BASE extends `${infer _}`
+export type SplittedString<
+  BASE extends string,
+  SEP extends string | undefined,
+> = BASE extends `${infer _}`
   ? SEP extends undefined
     ? [BASE]
     : BASE extends `${infer FIRST_SEGMENT}${SEP}${infer _}`

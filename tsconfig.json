@@ -3,7 +3,7 @@
     "target": "es5",
     "module": "commonjs",
     "lib": [
-      "ES2015"
+      "ESNext"
     ],
     "declaration": true,
     "declarationDir": "dist/types",

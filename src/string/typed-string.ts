@@ -15,6 +15,9 @@ export class TypedString<STR extends string> {
   /**
    * Typed version of `String.prototype.charAt`
    * Returns the character at the specified index.
+   *
+   * ! Can parse a string around 80 charactes maximum.
+   *
    * @param pos The zero-based index of the desired character.
    * @example
    * const typedString = new TypedString('some string');
@@ -31,6 +34,9 @@ export class TypedString<STR extends string> {
   /**
    * Typed version of `String.prototype.concat`
    * Returns a string that contains the concatenation of two or more strings.
+   *
+   * ! Can preserve type only when concatenating with around 10 strings
+   *
    * @param strings The strings to append to the end of the string.
    * @example
    * const typedString = new TypedString('first');
@@ -46,6 +52,9 @@ export class TypedString<STR extends string> {
    * Typed version of `String.prototype.repeat`
    * Returns a String value that is made from count copies appended together. If count is 0,
    * the empty string is returned.
+   *
+   * ! Can preserve type only when repeating less than 15 times
+   *
    * @param count number of copies to append
    * @example
    * const typedString = new TypedString('bobby ');
@@ -72,10 +81,13 @@ export class TypedString<STR extends string> {
    * // type is exact ' st', not general string
    * const slice2: ' st' = typedString.slice(4, 7);
    */
-  slice<START extends number = 0, END extends number = StringLength<STR>>(
+  slice<
+    START extends number = 0,
+    END extends number = StringLength<STR>
+  >(
     startIndex?: START,
     endIndex?: END,
-  ): SlicedString<STR, START, END>
+  ): SlicedString<STR, START, END>;
   slice(startIndex?: number, endIndex?: number): string {
     return typedSlice(this.value, startIndex, endIndex);
   }
