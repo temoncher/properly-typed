@@ -1,10 +1,10 @@
-export type TrimmedString<BASE extends string> = BASE extends `${infer _}`
-  ? BASE extends `${' '}${infer REST}`
+export type TrimmedString<BASE extends string> = string extends BASE
+  ? string
+  : BASE extends `${' '}${infer REST}`
     ? TrimmedString<REST>
     : BASE extends `${infer START}${' '}`
       ? TrimmedString<START>
-      : BASE
-  : string;
+      : BASE;
 
 export interface TypedTrim {
   <STR extends string>(str: STR): TrimmedString<STR>;

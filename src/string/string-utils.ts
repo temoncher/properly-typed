@@ -20,30 +20,31 @@ export type StringToChars<BASE extends string> = string extends BASE
       ? [C0, C1, C2, C3, ...StringToChars<REST>]
       : BASE extends `${infer C0}${infer REST}`
         ? [C0, ...StringToChars<REST>]
-        : []
+        : [];
 
-export type StringLength<BASE extends string> = BASE extends `${infer _}`
-  ? StringToChars<BASE>['length']
-  : number;
+export type StringLength<BASE extends string> = string extends BASE
+  ? number
+  : StringToChars<BASE>['length'];
 
 export type StringHead<
   BASE extends string,
   TO extends number = StringLength<BASE>,
   HEAD extends string = '',
-> = BASE extends `${infer _}`
-  ? StringLength<HEAD> extends TO
+> = string extends BASE
+  ? string
+  : StringLength<HEAD> extends TO
     ? HEAD
     : BASE extends `${infer FIRST_CHAR}${infer REST}`
       ? StringHead<REST, TO, `${HEAD}${FIRST_CHAR}`>
-      : `${HEAD}${BASE}`
-  : string;
+      : `${HEAD}${BASE}`;
 
 export type StringTail<
   BASE extends string,
   FROM extends number = 0,
   ITERATION extends number = 0,
-> = BASE extends `${infer _}`
-  ? FROM extends ValidNumber
+> = string extends BASE
+  ? string
+  : FROM extends ValidNumber
     ? FROM extends 0
         ? BASE
         : BASE extends `${infer _}${infer REST}`
@@ -51,5 +52,4 @@ export type StringTail<
             ? REST
             : StringTail<REST, MinusOne<FROM>, ITERATION>
           : ''
-    : string
-  : string;
+    : string;

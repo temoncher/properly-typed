@@ -1,7 +1,8 @@
 import { ArrayHead, ArrayTail } from '../types/array-utils';
 
-export type Concat<BASE extends string, A> = BASE extends `${infer _}`
-  ? A extends string // TODO: investigate if this check is necessary
+export type Concat<BASE extends string, A> = string extends BASE
+  ? string
+  : A extends string // TODO: investigate if this check is necessary
     ? `${BASE}${A}`
     : A extends string[]
         ? ArrayHead<A> extends string
@@ -9,8 +10,7 @@ export type Concat<BASE extends string, A> = BASE extends `${infer _}`
             ? Concat<BASE, ArrayHead<A>>
             : Concat<`${BASE}${ArrayHead<A>}`, ArrayTail<A>>
           : never
-        : never
-  : string;
+        : never;
 
 export interface TypedConcat {
   <STR extends string, ARR extends string[]>(str: STR, ...strings: ARR): Concat<STR, ARR>;

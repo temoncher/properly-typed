@@ -5,8 +5,9 @@ export type Substr<
   FROM extends number,
   LEN extends number | undefined = undefined,
   RES extends string = '',
-> = BASE extends `${infer _}`
-  ? FROM extends 0
+> = string extends BASE
+  ? string
+  : FROM extends 0
     ? LEN extends undefined
       ? BASE
       : BASE extends ''
@@ -16,8 +17,7 @@ export type Substr<
           : BASE extends `${infer FIRST_CHAR}${infer REST}`
             ? Substr<StringTail<REST, 0>, 0, LEN, `${RES}${FIRST_CHAR}`>
             : RES
-    : Substr<StringTail<BASE, FROM>, 0, LEN, RES>
-  : string;
+    : Substr<StringTail<BASE, FROM>, 0, LEN, RES>;
 
 export interface TypedSubstr {
   <

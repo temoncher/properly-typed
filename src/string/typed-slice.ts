@@ -3,17 +3,17 @@ import { StringHead, StringLength, StringTail } from './string-utils';
 
 export type SlicedString<
   BASE extends string,
-  START extends number,
-  END extends number,
-> = BASE extends `${infer _}`
-  ? START extends ValidNumber
+  START extends number = 0,
+  END extends number = StringLength<BASE>,
+> = string extends BASE
+  ? string
+  : START extends ValidNumber
     ? END extends ValidNumber
       ? END extends StringLength<BASE>
         ? StringTail<BASE, START>
         : StringHead<StringTail<BASE, START>, Minus<END, START>>
       : string
-    : string
-  : string;
+    : string;
 
 export interface TypedSlice {
   <

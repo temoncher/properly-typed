@@ -3,8 +3,9 @@ import { StringToChars } from './string-utils';
 export type SplittedString<
   BASE extends string,
   SEP extends string | undefined,
-> = BASE extends `${infer _}`
-  ? SEP extends undefined
+> = string extends BASE
+  ? string[]
+  : SEP extends undefined
     ? [BASE]
     : BASE extends `${infer FIRST_SEGMENT}${SEP}${infer _}`
       ? FIRST_SEGMENT extends `${infer _}${SEP}${infer _}`
@@ -12,8 +13,7 @@ export type SplittedString<
         : BASE extends `${FIRST_SEGMENT}${SEP}${infer REST}`
           ? [FIRST_SEGMENT, ...SplittedString<REST, SEP>]
           : never
-      : [BASE] // Only fires when no separators left
-  : string[];
+      : [BASE]; // Only fires when no separators left
 
 export interface TypedSplit {
   <

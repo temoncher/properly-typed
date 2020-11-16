@@ -3,13 +3,13 @@ import { MinusOne, ValidNumber } from '../types/arithmetics';
 export type RepeatedString<
   BASE extends string,
   COUNT extends number,
-> = BASE extends `${infer _}`
-  ? COUNT extends 0
+> = string extends BASE
+  ? string
+  : COUNT extends 0
     ? BASE
     : COUNT extends ValidNumber
       ? `${BASE}${RepeatedString<BASE, MinusOne<COUNT>>}`
-      : string
-  : string;
+      : string;
 
 export interface TypedRepeat {
   <STR extends string, COUNT extends number>(str: STR, count: COUNT): RepeatedString<STR, COUNT>;

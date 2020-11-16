@@ -1,18 +1,17 @@
-import { ValidNumber } from '@/types/arithmetics';
 import { StringToChars } from './string-utils';
 
 export type CharAt<
   BASE extends string,
   POS extends number = 0,
-> = BASE extends `${infer _}`
-  ? POS extends ValidNumber
-    ? StringToChars<BASE>[POS] extends infer CHAR
+> = string extends BASE
+  ? string
+  : number extends POS
+    ? string
+    : StringToChars<BASE>[POS] extends infer CHAR
       ? CHAR extends undefined
         ? string
         : CHAR
-      : string
-    : string
-  : string;
+      : string;
 
 export interface TypedCharAt {
   <STR extends string, POS extends number>(str: STR, pos: POS): CharAt<STR, POS>;
