@@ -1,4 +1,4 @@
-import { ArrayHead, ArrayTail } from '../types/array-utils';
+import { ArrayHead, ArrayTail } from '@/array/array-utils';
 
 export type Concat<BASE extends string, A> = string extends BASE
   ? string

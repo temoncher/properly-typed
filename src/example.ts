@@ -1,6 +1,6 @@
-import { Leaves } from './types/leaves.type';
-import { OutputType } from './types/output-type.type';
-import { get } from './index';
+import { get } from './object';
+import { Leaves } from './object/leaves.type';
+import { OutputType } from './object/output-type.type';
 
 const something = {
   foo: {

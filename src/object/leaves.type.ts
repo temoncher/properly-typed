@@ -1,5 +1,5 @@
 import { Join } from './join.type';
-import { MinusOne } from './arithmetics';
+import { MinusOne } from '../arithmetics';
 
 export type Leaves<T, D extends number = 10> = MinusOne<D> extends never
   ? never

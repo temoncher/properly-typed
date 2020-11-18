@@ -1,4 +1,4 @@
-import { MinusOne, ValidNumber } from '../types/arithmetics';
+import { MinusOne, ValidNumber } from '../arithmetics';
 
 export type RepeatedString<
   BASE extends string,

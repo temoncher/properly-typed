@@ -1,7 +1,7 @@
 import {
   MinusOne,
   ValidNumber,
-} from '../types/arithmetics';
+} from '../arithmetics';
 
 /**
   * Transforms string into array of chars
