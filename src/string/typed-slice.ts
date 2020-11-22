@@ -19,7 +19,7 @@ export interface TypedSlice {
   <
     STR extends string,
     START extends number = 0,
-    END extends number = StringLength<STR>
+    END extends number = StringLength<STR>,
   >(
     str: STR,
     startIndex?: START,

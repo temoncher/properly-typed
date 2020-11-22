@@ -46,10 +46,10 @@ export type StringTail<
   ? string
   : FROM extends ValidNumber
     ? FROM extends 0
-        ? BASE
-        : BASE extends `${infer _}${infer REST}`
-          ? ITERATION extends FROM
-            ? REST
-            : StringTail<REST, MinusOne<FROM>, ITERATION>
-          : ''
+      ? BASE
+      : BASE extends `${infer _}${infer REST}`
+        ? ITERATION extends FROM
+          ? REST
+          : StringTail<REST, MinusOne<FROM>, ITERATION>
+        : ''
     : string;

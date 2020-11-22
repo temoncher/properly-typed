@@ -1,6 +1,6 @@
-import { get } from './object';
-import { Leaves } from './object/leaves.type';
-import { OutputType } from './object/output-type.type';
+import { typedGet } from '.';
+import { Leaves } from './leaves.type';
+import { OutputType } from './output-type.type';
 
 const something = {
   foo: {
@@ -29,12 +29,12 @@ const somethingOther = {
   },
 };
 
-const res = get(somethingOther, 'fooql/barer/str');
+const res = typedGet(somethingOther, 'fooql/barer/str');
 
 type ComputedUnionType = Leaves<typeof something>;
 // type ComputedUnionType = "topProp" | "foo/bar/str" | "foo/bar/num" | "some/prop"
 
-type Z = { [K in ComputedUnionType]: OutputType<typeof something, K> }
+type Z = { [K in ComputedUnionType]: OutputType<typeof something, K> };
 
 /* type Z = {
     topProp: number;

@@ -12,4 +12,4 @@ export type OutputType<T, K extends string, D extends string = '/'> = string ext
           ? F extends keyof T
             ? OutputType<T[F], Extract<R, string>, D>
             : never
-          : never
+          : never;

@@ -23,7 +23,7 @@ export interface TypedSubstr {
   <
     STR extends string,
     FROM extends number,
-    LEN extends number | undefined = undefined
+    LEN extends number | undefined = undefined,
   >(
     str: STR,
     from: FROM,

@@ -5,12 +5,12 @@ export type Concat<BASE extends string, A> = string extends BASE
   : A extends string // TODO: investigate if this check is necessary
     ? `${BASE}${A}`
     : A extends string[]
-        ? ArrayHead<A> extends string
-          ? A['length'] extends 1
-            ? Concat<BASE, ArrayHead<A>>
-            : Concat<`${BASE}${ArrayHead<A>}`, ArrayTail<A>>
-          : never
-        : never;
+      ? ArrayHead<A> extends string
+        ? A['length'] extends 1
+          ? Concat<BASE, ArrayHead<A>>
+          : Concat<`${BASE}${ArrayHead<A>}`, ArrayTail<A>>
+        : never
+      : never;
 
 export interface TypedConcat {
   <STR extends string, ARR extends string[]>(str: STR, ...strings: ARR): Concat<STR, ARR>;

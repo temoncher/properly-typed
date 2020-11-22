@@ -18,7 +18,7 @@ export type SplittedString<
 export interface TypedSplit {
   <
     STR extends string,
-    SEP extends string | undefined = undefined
+    SEP extends string | undefined = undefined,
   >(
     str: STR,
     separator?: SEP, // TODO: add support for regex and limit

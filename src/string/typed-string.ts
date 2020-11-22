@@ -83,7 +83,7 @@ export class TypedString<STR extends string> {
    */
   slice<
     START extends number = 0,
-    END extends number = StringLength<STR>
+    END extends number = StringLength<STR>,
   >(
     startIndex?: START,
     endIndex?: END,
