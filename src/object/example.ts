@@ -29,7 +29,7 @@ const somethingOther = {
   },
 };
 
-const res = typedGet(somethingOther, 'fooql/barer/str');
+const res = typedGet(somethingOther, 'fooql/barer/str', '/');
 
 type ComputedUnionType = Leaves<typeof something>;
 // type ComputedUnionType = "topProp" | "foo/bar/str" | "foo/bar/num" | "some/prop"

@@ -18,10 +18,11 @@
   },
   "homepage": "https://github.com/temoncher/typed-get#readme",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.6.0",
-    "@typescript-eslint/parser": "^4.6.0",
-    "eslint": "^7.12.1",
-    "eslint-config-airbnb-base": "^14.2.0",
+    "@typescript-eslint/eslint-plugin": "^4.8.1",
+    "@typescript-eslint/parser": "^4.8.1",
+    "eslint": "^7.14.0",
+    "eslint-config-airbnb-typescript": "^12.0.0",
+    "eslint-config-temoncher": "^1.1.3",
     "eslint-plugin-import": "^2.22.1",
     "typescript": "^4.1.0-beta"
   }
