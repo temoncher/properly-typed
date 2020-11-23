@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-shadow */
 export type ArrayTail<
   A extends unknown[],
 > = ((...parameters: A) => unknown) extends ((h: infer _, ...t: infer T) => unknown)

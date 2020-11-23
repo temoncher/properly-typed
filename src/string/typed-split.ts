@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-shadow */
 import { StringToChars } from './string-utils';
 
 export type SplittedString<

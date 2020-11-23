@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars, unicorn/prevent-abbreviations */
 import { TypedString } from './typed-string';
 
 const base = '  hey, 0123456, toWhAt?  ';

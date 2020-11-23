@@ -1,4 +1,4 @@
-import { Minus, ValidNumber } from '../types/arithmetics';
+import { Minus, ValidNumber } from '../arithmetics';
 import { StringHead, StringLength, StringTail } from './string-utils';
 
 export type SlicedString<

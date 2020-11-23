@@ -21,5 +21,11 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
-  }
+  },
+  "include": [
+    "src"
+  ],
+  "files": [
+    ".eslintrc.js"
+  ]
 }

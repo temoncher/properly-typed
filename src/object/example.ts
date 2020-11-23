@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars, unicorn/prevent-abbreviations */
 import { typedGet } from '.';
 import { Leaves } from './leaves.type';
 import { OutputType } from './output-type.type';
@@ -24,7 +25,7 @@ const somethingOther = {
   },
   suck: {
     my: {
-      D: ['lol'] as ['lol'],
+      d: ['lol'] as ['lol'],
     },
   },
 };
@@ -32,7 +33,6 @@ const somethingOther = {
 const res = typedGet(somethingOther, 'fooql/barer/str', '/');
 
 type ComputedUnionType = Leaves<typeof something>;
-// type ComputedUnionType = "topProp" | "foo/bar/str" | "foo/bar/num" | "some/prop"
 
 type Z = { [K in ComputedUnionType]: OutputType<typeof something, K> };
 

@@ -1,4 +1,5 @@
-import { ArrayElementType } from '@/types/array-utils';
+/* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-shadow */
+import { ArrayElementType } from '@/array/array-utils';
 
 type MaxIterations = [
   0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
