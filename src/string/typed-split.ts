@@ -15,25 +15,25 @@ export type SplittedString<
           : never
       : [BASE]; // Only fires when no separators left
 
-export interface TypedSplit {
+export type TypedSplit = {
   <
     STR extends string,
     SEP extends string | undefined = undefined,
   >(
-    str: STR,
+    baseString: STR,
     separator?: SEP, // TODO: add support for regex and limit
   ): SplittedString<STR, SEP>;
   (
-    str: string,
-    separator: { [Symbol.split](string: string, limit?: number): string[] },
+    baseString: string,
+    separator: { [Symbol.split]: (string: string, limit?: number) => string[] },
     limit?: number,
   ): string[];
-}
+};
 
 /**
  * Typed version of `String.prototype.split`
  * Split a string into substrings using the specified separator and return them as an array.
- * @param str A string to split.
+ * @param baseString A string to split.
  * @param separator An object that can split a string.
  * @param limit A value used to limit the number of elements returned in the array.
  * @example
@@ -41,7 +41,7 @@ export interface TypedSplit {
  * const split: ['0', '1', '23', '45', '67', '89'] = typedSplit('0,1,23,45,67,89', ',');
  */
 export const typedSplit: TypedSplit = (
-  str: string,
-  separator: { [Symbol.split](string: string, limit?: number): string[] },
+  baseString: string,
+  separator: { [Symbol.split]: (string: string, limit?: number) => string[] },
   limit?: number,
-) => str.split(separator, limit);
+) => baseString.split(separator, limit);

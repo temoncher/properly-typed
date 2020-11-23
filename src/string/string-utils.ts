@@ -47,6 +47,7 @@ export type StringTail<
   : FROM extends ValidNumber
     ? FROM extends 0
       ? BASE
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       : BASE extends `${infer _}${infer REST}`
         ? ITERATION extends FROM
           ? REST

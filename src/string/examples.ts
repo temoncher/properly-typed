@@ -1,7 +1,7 @@
 import { TypedString } from './typed-string';
 
-const str = '  hey, 0123456, toWhAt?  ';
-const tString = new TypedString(str);
+const base = '  hey, 0123456, toWhAt?  ';
+const tString = new TypedString(base);
 
 const chAt = tString.charAt(3);
 const con = tString.concat('lets do some', ' !!! ', 'che cks', '', '', '', '', '', '', '', '');

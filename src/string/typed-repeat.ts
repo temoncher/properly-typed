@@ -11,10 +11,13 @@ export type RepeatedString<
       ? `${BASE}${RepeatedString<BASE, MinusOne<COUNT>>}`
       : string;
 
-export interface TypedRepeat {
-  <STR extends string, COUNT extends number>(str: STR, count: COUNT): RepeatedString<STR, COUNT>;
-  (str: string, count: number): string;
-}
+export type TypedRepeat = {
+  <STR extends string, COUNT extends number>(
+    baseString: STR,
+    count: COUNT,
+  ): RepeatedString<STR, COUNT>;
+  (baseString: string, count: number): string;
+};
 
 /**
  * Typed version of `String.prototype.repeat`
@@ -23,7 +26,7 @@ export interface TypedRepeat {
  *
  * ! Can preserve type only when repeating less than 15 times
  *
- * @param str A string to repeat
+ * @param baseString A string to repeat
  * @param count number of copies to append
  * @example
  * // type is exact 'bobby bobby bobby ', not general string
@@ -31,4 +34,7 @@ export interface TypedRepeat {
  * // type is exact '', not general string
  * const repeated2: '' = typedRepeat('bobby ', 0);
  */
-export const typedRepeat: TypedRepeat = (str: string, count: number) => str.repeat(count);
+export const typedRepeat: TypedRepeat = (
+  baseString: string,
+  count: number,
+) => baseString.repeat(count);

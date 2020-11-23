@@ -18,7 +18,7 @@ type NumbersArray = [
   100,
 ];
 
-type Prev = [
+type Previous = [
   -1,
   ...NumbersArray,
   ...never[],
@@ -37,7 +37,7 @@ export type PlusOne<N extends number> = N extends ValidNumber
   : number;
 
 export type MinusOne<N extends number> = N extends ValidNumber
-  ? Prev[N]
+  ? Previous[N]
   : number;
 
 export type Plus<

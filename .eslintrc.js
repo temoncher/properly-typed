@@ -10,4 +10,7 @@ module.exports = {
     'temoncher/base',
     'temoncher/typescript',
   ],
+  rules: {
+    'unicorn/prefer-string-slice': 0,
+  }
 };

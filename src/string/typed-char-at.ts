@@ -13,10 +13,10 @@ export type CharAt<
         : CHAR
       : string;
 
-export interface TypedCharAt {
-  <STR extends string, POS extends number>(str: STR, pos: POS): CharAt<STR, POS>;
-  (str: string, pos: number): string;
-}
+export type TypedCharAt = {
+  <STR extends string, POS extends number>(baseString: STR, position: POS): CharAt<STR, POS>;
+  (baseString: string, position: number): string;
+};
 
 /**
  * Typed version of `String.prototype.charAt`
@@ -24,12 +24,15 @@ export interface TypedCharAt {
  *
  * ! Can parse a string around 80 charactes maximum.
  *
- * @param str
- * @param pos The zero-based index of the desired character.
+ * @param baseString
+ * @param position The zero-based index of the desired character.
  * @example
  * // type is exact 'e', not general string
  * const char1: 'e' = typedCharAt('some string', 3);
  * // type is exact '', not general string
  * const char2: '' = typedCharAt('short', 10);
  */
-export const typedCharAt: TypedCharAt = (str: string, pos: number) => str.charAt(pos);
+export const typedCharAt: TypedCharAt = (
+  baseString: string,
+  position: number,
+) => baseString.charAt(position);

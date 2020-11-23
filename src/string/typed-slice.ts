@@ -15,23 +15,23 @@ export type SlicedString<
       : string
     : string;
 
-export interface TypedSlice {
+export type TypedSlice = {
   <
     STR extends string,
     START extends number = 0,
     END extends number = StringLength<STR>,
   >(
-    str: STR,
+    baseString: STR,
     startIndex?: START,
     endIndex?: END,
   ): SlicedString<STR, START, END>;
-  (str: string, startIndex?: number, endIndex?: number): string;
-}
+  (baseString: string, startIndex?: number, endIndex?: number): string;
+};
 
 /**
  * Typed version of `String.prototype.slice`
  * Returns a section of a string.
- * @param str A string to slice from
+ * @param baseString A string to slice from
  * @param start The index to the beginning of the specified portion of stringObj.
  * @param end The index to the end of the specified portion of stringObj. The substring includes the characters up to, but not including, the character indicated by end.
  * If this value is not specified, the substring continues to the end of stringObj.
@@ -42,7 +42,7 @@ export interface TypedSlice {
  * const slice2: ' st' = typedSlice('some string', 4, 7);
  */
 export const typedSlice: TypedSlice = (
-  str: string,
+  baseString: string,
   startIndex?: number,
   endIndex?: number,
-) => str.slice(startIndex, endIndex);
+) => baseString.slice(startIndex, endIndex);

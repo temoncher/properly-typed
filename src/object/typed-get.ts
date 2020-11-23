@@ -1,4 +1,4 @@
-import { hasProp } from '@/guards/has-prop';
+import { hasProperty } from '@/guards/has-propoperty';
 
 import { Leaves } from './leaves.type';
 import { OutputType } from './output-type.type';
@@ -7,16 +7,16 @@ export const typedGet = <
   T extends Record<string, unknown>,
   P extends Leaves<T>,
   D extends string,
->(obj: T, path: P, delimiter: D): OutputType<T, P, D> => {
+>(target: T, path: P, delimiter: D): OutputType<T, P, D> => {
   const segments = path.split(delimiter);
 
   const result = segments.reduce<unknown>((output, segment) => {
-    if (!hasProp(output, segment)) {
+    if (!hasProperty(output, segment)) {
       throw new Error('Invalid path provided');
     }
 
     return output[segment];
-  }, { ...obj });
+  }, { ...target });
 
   return result as OutputType<T, P, D>;
 };

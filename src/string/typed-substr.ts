@@ -19,23 +19,23 @@ export type Substr<
             : RES
     : Substr<StringTail<BASE, FROM>, 0, LEN, RES>;
 
-export interface TypedSubstr {
+export type TypedSubstr = {
   <
     STR extends string,
     FROM extends number,
     LEN extends number | undefined = undefined,
   >(
-    str: STR,
+    baseString: STR,
     from: FROM,
     length?: LEN,
   ): Substr<STR, FROM, LEN>;
-  (str: string, from: number, length?: number): string;
-}
+  (baseString: string, from: number, length?: number): string;
+};
 
 /**
  * Typed version of `String.prototype.substr`
  * Gets a substring beginning at the specified location and having the specified length.
- * @param str string to slice from
+ * @param baseString string to slice from
  * @param from The starting position of the desired substring. The index of the first character in the string is zero.
  * @param length The number of characters to include in the returned substring.
  * @example
@@ -45,7 +45,8 @@ export interface TypedSubstr {
  * const substr2: '234' = typedSubstr('0123456789', 2, 3);
  */
 export const typedSubstr: TypedSubstr = (
-  str: string,
+  baseString: string,
   from: number,
   length?: number,
-) => str.substr(from, length);
+// eslint-disable-next-line unicorn/prefer-string-slice
+) => baseString.substr(from, length);

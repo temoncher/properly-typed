@@ -12,10 +12,10 @@ export type Concat<BASE extends string, A> = string extends BASE
         : never
       : never;
 
-export interface TypedConcat {
-  <STR extends string, ARR extends string[]>(str: STR, ...strings: ARR): Concat<STR, ARR>;
-  (str: string, ...strings: string[]): string;
-}
+export type TypedConcat = {
+  <STR extends string, ARR extends string[]>(baseString: STR, ...strings: ARR): Concat<STR, ARR>;
+  (baseString: string, ...strings: string[]): string;
+};
 
 /**
  * Typed version of `String.prototype.concat`
@@ -23,13 +23,13 @@ export interface TypedConcat {
  *
  * ! Can preserve type only when concatenating with around 10 strings
  *
- * @param str A string to concat with
+ * @param baseString A string to concat with
  * @param strings The strings to append to the end of the string.
  * @example
  * // type is exact 'first secondthird', not general string
  * const concatenated: 'first secondthird' = typedConcat('first', ' ', 'second', 'third');
  */
 export const typedConcat: TypedConcat = (
-  str: string,
+  baseString: string,
   ...strings: string[]
-): string => str.concat(...strings);
+): string => baseString.concat(...strings);

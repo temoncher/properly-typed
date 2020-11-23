@@ -6,17 +6,17 @@ export type TrimmedString<BASE extends string> = string extends BASE
       ? TrimmedString<START>
       : BASE;
 
-export interface TypedTrim {
-  <STR extends string>(str: STR): TrimmedString<STR>;
-  (str: string): string;
-}
+export type TypedTrim = {
+  <STR extends string>(baseString: STR): TrimmedString<STR>;
+  (baseString: string): string;
+};
 
 /**
  * Typed version of `String.prototype.trim`
  * Removes the leading and trailing white space and line terminator characters from a string.
- * @param str A string to trim
+ * @param baseString A string to trim
  * @example
  * // type is exact 'some not trimmed  string', not general string
  * const trimmed: 'some not trimmed  string' = typedTrim('  some not trimmed  string  ');
  */
-export const typedTrim: TypedTrim = (str: string) => str.trim();
+export const typedTrim: TypedTrim = (baseString: string) => baseString.trim();

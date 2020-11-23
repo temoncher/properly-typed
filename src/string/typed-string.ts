@@ -106,7 +106,7 @@ export class TypedString<STR extends string> {
     separator?: SEP, // TODO: add support for regex and limit
   ): SplittedString<STR, SEP>
   split(
-    separator: { [Symbol.split](string: string, limit?: number): string[] },
+    separator: { [Symbol.split]: (string: string, limit?: number) => string[] },
     limit?: number,
   ): string[] {
     return typedSplit(this.value, separator, limit);
