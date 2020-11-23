@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars, unicorn/prevent-abbreviations */
 import { typedGet } from '.';
-import { Leaves } from './leaves.type';
-import { OutputType } from './output-type.type';
+import { Leaves, OutputType } from './object-utils';
 
 const something = {
   foo: {
@@ -23,14 +22,14 @@ const somethingOther = {
       str: null,
     },
   },
-  suck: {
-    my: {
+  qool: {
+    thingy: {
       d: ['lol'] as ['lol'],
     },
   },
 };
 
-const res = typedGet(somethingOther, 'fooql/barer/str', '/');
+const res = typedGet(somethingOther, 'qool/thingy/d');
 
 type ComputedUnionType = Leaves<typeof something>;
 
