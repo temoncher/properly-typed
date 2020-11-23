@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars, @typescript-eslint/no-shadow */
 import { PlusOne, ValidRecursionLap } from '@/arithmetics';
 
 export type Join<K, P, D extends string = '/'> = K extends string | number

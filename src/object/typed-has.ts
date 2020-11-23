@@ -23,14 +23,6 @@ export type ObjectWithProperty<
   ? TARGET
   : TARGET & ObjectByPath<PATH, DELIMITER>;
 
-export type TypedHas = {
-  <TARGET, PATH extends string, DELIMITER extends string = '/'>(
-    target: TARGET,
-    path: PATH,
-    delimiter?: DELIMITER,
-  ): target is ObjectWithProperty<TARGET, PATH, DELIMITER>;
-};
-
 /**
  * Typed `has` typeguard. Indicates if given object has a key located by path.
  * @param target Target object
@@ -67,7 +59,7 @@ export type TypedHas = {
  * }
  * ```
  */
-export const typedHas: TypedHas = <TARGET, PATH extends string, DELIMITER extends string = '/'>(
+export const typedHas = <TARGET, PATH extends string, DELIMITER extends string = '/'>(
   target: TARGET,
   path: PATH,
   delimiter?: DELIMITER,
@@ -82,7 +74,7 @@ export const typedHas: TypedHas = <TARGET, PATH extends string, DELIMITER extend
 
   return typedHas(
     nextTarget,
-    rest.join(delimiter || '/'),
+    rest.join(delimiter),
     delimiter,
   );
 };
