@@ -1,19 +1,15 @@
 module.exports = {
-  parser: '@typescript-eslint/parser',
   parserOptions: {
+    parser: '@typescript-eslint/parser',
     project: ['./tsconfig.json'],
   },
   plugins: [
     '@typescript-eslint',
   ],
   extends: [
-    'temoncher/base',
     'temoncher/typescript',
   ],
   rules: {
-    'unicorn/prefer-string-slice': 0,
-    'unicorn/no-null': 0,
-    'unicorn/no-fn-reference-in-iterator': 0,
     'max-len': [
       2,
       {
